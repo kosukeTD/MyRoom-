@@ -4,12 +4,16 @@ using System.Collections;
 namespace Kakera
 {
     public class PickerControllerAll : MonoBehaviour
-    {
-        [SerializeField]
-        private Unimgpicker imagePicker;
+	{
+		[SerializeField]
+		private Unimgpicker imagePicker;
 
-        [SerializeField]
-        private MeshRenderer imageRenderer;
+		[SerializeField]
+		private MeshRenderer imageRenderer;
+
+		[SerializeField]
+		private MeshRenderer imageRenderer2;
+
 
 		//追記 1 
 		public static string imagePickingObjectName;
@@ -17,21 +21,24 @@ namespace Kakera
 		int index = 0;
 
 
-        void Awake()
-        {
-            imagePicker.Completed += (string path) =>
-            {			
-			    //下記を使うとpickerControllerに設定したマテリアルが全部変わってしまう	
-                //StartCoroutine(LoadImage(path, imageRenderer));
+		void Awake()
+		{
+			imagePicker.Completed += (string path) =>
+			{			
+				//下記を使うとpickerControllerに設定したマテリアルが全部変わってしまう	
+				//StartCoroutine(LoadImage(path, imageRenderer));
 				//下記変更内容
 				if(imagePickingObjectName == gameObject.name){
 					StartCoroutine(LoadImage(path, imageRenderer));
 				}
-            };
-        }
+				if(imagePickingObjectName == gameObject.name){
+					StartCoroutine(LoadImage(path, imageRenderer2));
+				}
+			};
+		}
 
-        public void OnPressShowPicker()
-        {
+		public void OnPressShowPicker()
+		{
 			//下記追記 1
 			imagePickingObjectName = gameObject.name;
 			Debug.Log(gameObject.name);
@@ -42,48 +49,46 @@ namespace Kakera
 
 			}
 
-        }
+		}
 
-        private IEnumerator LoadImage(string path, MeshRenderer output)
-        {
+		private IEnumerator LoadImage(string path, MeshRenderer output)
+		{
 
 			//下記追記 1
 			//Debug.Log("aa:"+gameObject.name);
 
-            var url = "file://" + path;
-            var www = new WWW(url);
-            yield return www;
+			var url = "file://" + path;
+			var www = new WWW(url);
+			yield return www;
 
 			//下記追記 1
 			//Debug.Log("aaaaaaaaaaaaaaaaaa");
 
 
-            var texture = www.texture;
-            if (texture == null)
-            {
-                Debug.LogError("Failed to load texture url:" + url);
-            }
+			var texture = www.texture;
+			if (texture == null)
+			{
+				Debug.LogError("Failed to load texture url:" + url);
+			}
 
 			//下記変更 2
-            //output.material.mainTexture = texture;
-			output.materials[index].mainTexture = texture;
-
-			//for(int i = 0; i < 2; i++){
-			//index++;
-			//}
-			//index = 0;
-
-			//if(index >= 2){
-			//	index = 0;
-			//}
-
+			//output.material.mainTexture = texture;
+			output.sharedMaterials[index].mainTexture = texture;
 			//下記2回目の設定値
 			index++;
-			if (index > 1) {
+			//テクスチャの数が複数ある場合はエラーが出るので下記を追加
+			if (imageRenderer.materials.Length <= index) {
 				index = 0;
 			}
 
+			//for(int i = 0; i < imageRenderer.materials.Length; i++){
+			//	index++;
+			//};
+			//index = 0;
 
-        }
-    }
+
+
+
+		}
+	}
 }

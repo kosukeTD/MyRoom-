@@ -69,7 +69,8 @@ namespace Kakera
 			output.materials[index].mainTexture = texture;
 			//下記2回目の設定値
 			index++;
-			if (index > 1) {
+			//テクスチャの数が複数ある場合はエラーが出るので下記を追加
+			if (imageRenderer.materials.Length <= index) {
 				index = 0;
 			}
 
