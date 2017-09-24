@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Kakera
 {
-    public class PickerController : MonoBehaviour
+    public class PickerControllerAll : MonoBehaviour
     {
         [SerializeField]
         private Unimgpicker imagePicker;
@@ -67,18 +67,21 @@ namespace Kakera
 			//下記変更 2
             //output.material.mainTexture = texture;
 			output.materials[index].mainTexture = texture;
+
+			//for(int i = 0; i < 2; i++){
+			//index++;
+			//}
+			//index = 0;
+
+			//if(index >= 2){
+			//	index = 0;
+			//}
+
 			//下記2回目の設定値
 			index++;
 			if (index > 1) {
 				index = 0;
 			}
-
-			//for(int i = 0; i < imageRenderer.materials.Length; i++){
-			//	index++;
-			//};
-			//index = 0;
-
-	
 
 
         }
