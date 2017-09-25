@@ -14,9 +14,13 @@ namespace Kakera
 		[SerializeField]
 		private MeshRenderer imageRenderer2;
 
+		[SerializeField]
+		private MeshRenderer[] imageRenderers;
 
+		//追記　3 共通のテクスチャにするために下記を削除
 		//追記 1 
-		public static string imagePickingObjectName;
+		//public static string imagePickingObjectName;
+
 		//追記 2 Materialsの配列を指定するためのインデックス
 		int index = 0;
 
@@ -28,10 +32,10 @@ namespace Kakera
 				//下記を使うとpickerControllerに設定したマテリアルが全部変わってしまう	
 				//StartCoroutine(LoadImage(path, imageRenderer));
 				//下記変更内容
-				if(imagePickingObjectName == gameObject.name){
+				if(PickerController.imagePickingObjectName == gameObject.name){
 					StartCoroutine(LoadImage(path, imageRenderer));
 				}
-				if(imagePickingObjectName == gameObject.name){
+				if(PickerController.imagePickingObjectName == gameObject.name){
 					StartCoroutine(LoadImage(path, imageRenderer2));
 				}
 			};
@@ -43,7 +47,7 @@ namespace Kakera
 		public void OnPressShowPicker()
 		{
 			//下記追記 1
-			imagePickingObjectName = gameObject.name;
+			PickerController.imagePickingObjectName = gameObject.name;
 			Debug.Log(gameObject.name);
 
 			//for分追記 2 これでimagePicker.Showは「画像を選んで貼る」まで行ってくれるので、マテリアルの数だけ実行すれば全てのマテリアルに画像が貼られる。
