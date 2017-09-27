@@ -24,7 +24,6 @@ namespace Kakera
 		//追記 2 Materialsの配列を指定するためのインデックス
 		int index = 0;
 
-
 		void Awake()
 		{
 			imagePicker.Completed += (string path) =>
@@ -33,11 +32,14 @@ namespace Kakera
 				//StartCoroutine(LoadImage(path, imageRenderer));
 				//下記変更内容
 				if(PickerController.imagePickingObjectName == gameObject.name){
-					StartCoroutine(LoadImage(path, imageRenderer));
+					for(int i=0;i< imageRenderers.Length;i++){						
+						StartCoroutine(LoadImage(path, imageRenderers[i]));
+					}
+
 				}
-				if(PickerController.imagePickingObjectName == gameObject.name){
-					StartCoroutine(LoadImage(path, imageRenderer2));
-				}
+				//if(PickerController.imagePickingObjectName == gameObject.name){
+				//	StartCoroutine(LoadImage(path, imageRenderer2));
+				//}
 			};
 
 
