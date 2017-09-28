@@ -46,7 +46,7 @@ public class ChangeCameraTripleController : MonoBehaviour {
 			// もしも「Cボタン」を押した時、「かつ」、「mainCameraON」のステータスが「false」の時（条件）
 			//下記変更
 		//} else if(Input.GetKeyDown(KeyCode.C) && mainCameraON == false){
-		}if(Input.GetKeyDown(KeyCode.C)&& subCamera1ON == true){
+		}else if(Input.GetKeyDown(KeyCode.C)&& subCamera1ON == true){
 			//変更
 			mainCamera.enabled = false;
 			//下記1に変更
@@ -57,7 +57,7 @@ public class ChangeCameraTripleController : MonoBehaviour {
 			mainCameraON = false;
 			subCamera1ON = false;
 			subCamera2ON = true;
-		}if (Input.GetKeyDown(KeyCode.C) && subCamera2ON == true) {
+		}else if (Input.GetKeyDown(KeyCode.C) && subCamera2ON == true) {
 			mainCamera.enabled = true;
 			subCamera1.enabled = false;
 			subCamera2.enabled = false;

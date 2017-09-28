@@ -15,11 +15,13 @@ public class GrappleObject : MonoBehaviour {
 		screenPoint = Camera.main.WorldToScreenPoint (transform.position);
 		// ワールド座標上の、マウスカーソルと、対象の位置の差分。
 		offset = transform.position - Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
 	}
 
 	void OnMouseDrag (){
 		Vector3 currentScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 		Vector3 currentPosition = Camera.main.ScreenToWorldPoint (currentScreenPoint) + this.offset;
+		//currentPosition.y = 0;
 		transform.position = currentPosition;
 	}
 
