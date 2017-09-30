@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chase : MonoBehaviour {
+public class ChaseTest2: MonoBehaviour {
+
 
 	public Transform target1;//追いかける対象-オブジェクトをインスペクタから登録できるように
 	public Transform target2;
@@ -19,12 +20,12 @@ public class Chase : MonoBehaviour {
 	public float lookSpeed;//次の視点へのカメラのスピード
 
 
-	void Start () {
-		//target = GameObject.Find("対象").transform; インスペクタから登録するのでいらない
+		void Start () {
+			//target = GameObject.Find("対象").transform; インスペクタから登録するのでいらない
 
-	}
+		}
 
-	void Update () {
+		void Update () {
 		//targetの方に少しずつ向きが変わる
 		//transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (target1.position - transform.position), 0.3f);
 
@@ -40,9 +41,9 @@ public class Chase : MonoBehaviour {
 		}
 
 
-		//targetに向かって進む
-		//transform.position += transform.forward * speed;
-	}
+			//targetに向かって進む
+			//transform.position += transform.forward * speed;
+		}
 
 	void OnTriggerEnter(Collider checkPoint){
 		//オブジェクトに当たるとタグを保存
@@ -53,6 +54,8 @@ public class Chase : MonoBehaviour {
 		}if (checkPoint.gameObject.tag == "TagCP3") {
 			touchingObjectTag = checkPoint.gameObject.tag;
 		}
-
+			
 	}
 }
+
+

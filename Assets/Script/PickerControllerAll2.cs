@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Kakera
 {
-    public class PickerControllerAll : MonoBehaviour
+    public class PickerControllerAll2 : MonoBehaviour
 	{
 		[SerializeField]
 		private Unimgpicker imagePicker;
@@ -13,6 +13,12 @@ namespace Kakera
 
 		[SerializeField]
 		private MeshRenderer imageRenderer2;
+
+		[SerializeField]
+		private MeshRenderer imageRenderer3;
+
+		[SerializeField]
+		private MeshRenderer imageRenderer4;
 
 		[SerializeField]
 		private MeshRenderer[] imageRenderers;
